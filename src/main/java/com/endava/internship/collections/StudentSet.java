@@ -154,7 +154,10 @@ public class StudentSet<E> implements Set<E> {
         if ((float) size / (float) set.length < DEFAULT_LOAD_FACTOR)
             return;
         Node<E>[] tmp = new Node[set.length * 2];
-        System.arraycopy(set, 0, tmp, 0, set.length);
+        for (Node<E> node : set) {
+            if (node != null)
+                tmp[(set.length * 2 - 1) & node.hash] = node;
+        }
         set = tmp;
     }
 
