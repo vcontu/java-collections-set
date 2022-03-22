@@ -29,4 +29,8 @@ public class Student //TODO consider implementing any interfaces necessary for y
         2. Student names are sorted alphabetically, if two students have the same name, then the older one is
         placed before the younger student in an ordered student list.
     */
+    public static void main(String[] args) {
+        System.out.println("hello world!");
+        // TO DO
+    }
 }
