@@ -1,32 +1,39 @@
 package com.endava.internship.collections;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
-public class StudentSet implements Set<Student> {
+public class StudentSet<Student> implements Set<Student> {
+
+    private transient NavigableMap<Student, Object> map;
+
+    private static final Object DUMMY = new Object();
+
+    StudentSet(){
+        map = new TreeMap<>();
+    }
+
     @Override
     public int size() {
         //TODO
-        return 0;
+        return map.size();
     }
 
     @Override
     public boolean isEmpty() {
         //TODO
-        return false;
+        return map.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
         //TODO
-        return false;
+        return map.containsKey(o);
     }
 
     @Override
     public Iterator<Student> iterator() {
         //TODO
-        return null;
+        return map.navigableKeySet().iterator();
     }
 
     @Override
@@ -44,18 +51,19 @@ public class StudentSet implements Set<Student> {
     @Override
     public boolean add(Student student) {
         //TODO
-        return false;
+        return map.put(student, DUMMY) == null;
     }
 
     @Override
     public boolean remove(Object o) {
         //TODO
-        return false;
+        return map.remove(o) == DUMMY;
     }
 
     @Override
     public void clear() {
         //TODO
+        map.clear();
     }
 
     @Override
