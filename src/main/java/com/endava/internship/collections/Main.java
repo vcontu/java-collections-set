@@ -28,13 +28,12 @@ public class Main {
             System.out.println(student.getName() + "\t" +student.getDateOfBirth());
         }
 
-//        TreeSet treeSet = new TreeSet();
-
         System.out.println(studentSet.size());
 
         System.out.println(studentSet.remove(ion));
         System.out.println("After removal of 1 item size = " + studentSet.size());
         studentSet.clear();
         System.out.println("After clearing the set size = " + studentSet.size());
+        System.out.println("Is empty = " + studentSet.isEmpty());
     }
 }

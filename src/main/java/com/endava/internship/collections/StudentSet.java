@@ -14,25 +14,23 @@ public class StudentSet<Student> implements Set<Student> {
 
     @Override
     public int size() {
-        //TODO
+
         return map.size();
     }
 
     @Override
     public boolean isEmpty() {
-        //TODO
         return map.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
-        //TODO
         return map.containsKey(o);
     }
 
     @Override
     public Iterator<Student> iterator() {
-        //TODO
+        //TODO maybe implement own iterator
         return map.navigableKeySet().iterator();
     }
 
@@ -50,19 +48,16 @@ public class StudentSet<Student> implements Set<Student> {
 
     @Override
     public boolean add(Student student) {
-        //TODO
         return map.put(student, DUMMY) == null;
     }
 
     @Override
     public boolean remove(Object o) {
-        //TODO
         return map.remove(o) == DUMMY;
     }
 
     @Override
     public void clear() {
-        //TODO
         map.clear();
     }
 

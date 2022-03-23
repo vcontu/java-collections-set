@@ -18,19 +18,24 @@ public class Student implements Comparable //TODO consider implementing any inte
         this.details = details;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public LocalDate getDateOfBirth() { return dateOfBirth; }
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
 
-    public String getDetails() { return details; }
+    public String getDetails() {
+        return details;
+    }
 
     @Override
     public int compareTo(Object o) {
-        int byName = name.compareTo(((Student)o).name);
-        if(byName == 0){
+        int byName = name.compareTo(((Student) o).name);
+        if (byName == 0) {
             return dateOfBirth.compareTo(((Student) o).dateOfBirth);
         } else return byName;
-
 
     }
 
