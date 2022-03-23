@@ -68,7 +68,7 @@ public class StudentSet implements Set<Student> {
 
     @Override
     public void clear() {
-        //TODO
+        this.students.clear();
     }
 
     @Override
