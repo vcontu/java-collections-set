@@ -1,26 +1,39 @@
 package com.endava.internship.collections;
 
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 public class StudentSet implements Set<Student> {
+    Set<Student> students;
+
+    public StudentSet(Set<Student> students) {
+        this.students = students;
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
+
     @Override
     public int size() {
-        //TODO
-        return 0;
+        return this.students.size();
     }
 
     @Override
     public boolean isEmpty() {
-        //TODO
-        return false;
+        return students.size() == 0;
     }
 
     @Override
     public boolean contains(Object o) {
-        //TODO
-        return false;
+        if (o == null) {
+            return false;
+        } else {
+            return o.equals(this);
+        }
     }
 
     @Override
