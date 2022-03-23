@@ -38,8 +38,12 @@ public class StudentSet implements Set<Student> {
 
     @Override
     public Iterator<Student> iterator() {
-        //TODO
-        return null;
+        Iterator<Student> iterator = students.iterator();
+
+        while (iterator.hasNext()) {
+            iterator.next();
+        }
+        return iterator;
     }
 
     @Override
