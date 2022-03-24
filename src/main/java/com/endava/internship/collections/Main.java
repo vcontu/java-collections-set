@@ -20,7 +20,7 @@ public class Main {
         studentSet.add(s5);
 
         System.out.println(studentSet.size());
-//        System.out.println(studentSet.isEmpty());
+        System.out.println(studentSet.isEmpty());
         System.out.println(studentSet.contains(s5));
         System.out.println(studentSet.iterator());
         System.out.println(Arrays.toString(studentSet.toArray()));
