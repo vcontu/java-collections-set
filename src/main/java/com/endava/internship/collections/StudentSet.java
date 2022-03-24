@@ -1,58 +1,48 @@
 package com.endava.internship.collections;
 
-import java.time.LocalDate;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class StudentSet implements Set<Student> {
-    Set<Student> students;
+    Map<Student, Integer> studentSet;
+    private static final Integer DEFAULT_VALUE = -1;
 
-    public StudentSet(Set<Student> students) {
-        this.students = students;
-    }
-
-    public void addStudent(Student student) {
-        this.students.add(student);
+    public StudentSet() {
+        studentSet = new HashMap<>();
     }
 
     @Override
     public int size() {
-        return this.students.size();
+        return studentSet.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return students.size() == 0;
+        return studentSet.size() == 0;
     }
 
     @Override
     public boolean contains(Object o) {
-        if (o == null) {
-            return false;
-        } else {
-            return o.equals(this);
+        for (Student student : studentSet.keySet()) {
+            if (student.equals(o)) {
+                return true;
+            }
         }
+        return false;
     }
 
-    /*******************************************************/
-    /*******************************************************/
     @Override
     public Iterator<Student> iterator() {
-        Iterator<Student> iterator = students.iterator();
-
-        while (iterator.hasNext()) {
-            iterator.next();
-        }
-        return iterator;
+        return studentSet.keySet().iterator();
     }
 
     @Override
     public Object[] toArray() {
-        //TODO
-        //TODO
-        return new Object[0];
+        int i = 0;
+        Object[] result = new Object[studentSet.size()];
+        for (Student student : this) {
+            result[i++] = student;
+        }
+        return result;
     }
 
     @Override
@@ -63,25 +53,23 @@ public class StudentSet implements Set<Student> {
 
     @Override
     public boolean add(Student student) {
-        //TODO
-        return false;
+        return studentSet.put(student, DEFAULT_VALUE) == null;
     }
 
     @Override
     public boolean remove(Object o) {
-        //TODO
-        return false;
+        return DEFAULT_VALUE.equals(studentSet.remove(o));
     }
 
     @Override
     public void clear() {
-        this.students.clear();
+        studentSet.clear();
     }
 
     @Override
     public boolean addAll(Collection<? extends Student> collection) {
-        //TODO
-        return false;
+        // TO DO
+        throw new UnsupportedOperationException();
     }
 
     @Override
