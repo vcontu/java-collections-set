@@ -1,20 +1,20 @@
 package com.endava.internship.collections;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class StudentSet<Student> implements Set<Student> {
 
-    private transient NavigableMap<Student, Object> map;
+    private NavigableMap<Student, Object> map;
 
     private static final Object DUMMY = new Object();
 
-    StudentSet(){
+    StudentSet() {
         map = new TreeMap<>();
     }
 
     @Override
     public int size() {
-
         return map.size();
     }
 
@@ -36,14 +36,24 @@ public class StudentSet<Student> implements Set<Student> {
 
     @Override
     public Object[] toArray() {
-        //TODO
-        return new Object[0];
+        Object[] array = new Object[map.size()];
+        Iterator<Student> iterator = iterator();
+        for (int i = 0; i < array.length; i++) {
+            array[i] = iterator.next();
+        }
+        return array;
     }
 
     @Override
     public <T> T[] toArray(T[] ts) {
-        //TODO
-        return null;
+        if (ts.length < this.map.size()) {
+            ts = (T[]) Array.newInstance(ts.getClass().getComponentType(), map.size());
+        }
+        Iterator<T> iterator = (Iterator<T>) iterator();
+        for (int i = 0; i < map.size(); i++) {
+            ts[i] = iterator.next();
+        }
+        return ts;
     }
 
     @Override
@@ -63,8 +73,12 @@ public class StudentSet<Student> implements Set<Student> {
 
     @Override
     public boolean addAll(Collection<? extends Student> collection) {
-        //TODO
-        return false;
+        boolean changed = false;
+
+        for (Student student : collection) {
+            if (this.add(student)) changed = true;
+        }
+        return changed;
     }
 
     @Override
