@@ -1,5 +1,6 @@
 package com.endava.internship.collections;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class StudentSet implements Set<Student> {
@@ -47,9 +48,11 @@ public class StudentSet implements Set<Student> {
 
     @Override
     public <T> T[] toArray(T[] ts) {
-        //TODO
-//        return Arrays.stream(ts).toArray();
-        throw new UnsupportedOperationException();
+        ts = ts.length >= studentSet.size() ? ts : (T[]) Array.newInstance(ts.getClass().getComponentType(), studentSet.size());
+        for (int i = 0; i < Math.min(ts.length, studentSet.size()); i++) {
+            ts[i] = (T) iterator().next();
+        }
+        return ts;
     }
 
     @Override
@@ -69,8 +72,9 @@ public class StudentSet implements Set<Student> {
 
     @Override
     public boolean addAll(Collection<? extends Student> collection) {
-        // TO DO
-        throw new UnsupportedOperationException();
+        long count;
+        count = collection.stream().filter(this::add).count();
+        return count > 0;
     }
 
     @Override

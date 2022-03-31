@@ -90,7 +90,8 @@ class StudentSetTest {
 
         assertAll(
                 () -> assertThat(studentSet.toArray()).isNotEmpty(),
-                () -> assertThat(studentSet.toArray()).hasSize(3)
+                () -> assertThat(studentSet.toArray()).hasSize(3),
+                () -> assertThat(studentSet.toArray(new Student[0])).hasSameClassAs(new Student[0])
         );
     }
 
@@ -110,6 +111,27 @@ class StudentSetTest {
                 () -> assertThat(studentSet.toString()).isNotEmpty(),
                 () -> assertThat(studentSet.add(st1)).isFalse(),
                 () -> assertThat(studentSet.add(st5)).isTrue()
+        );
+    }
+
+    @Test
+    void addAll() {
+        studentSet.add(st1);
+        studentSet.add(st2);
+        studentSet.add(st3);
+
+        Set<Student> newStudentSet = new StudentSet();
+        newStudentSet.add(st4);
+        newStudentSet.add(st5);
+        newStudentSet.add(st6);
+
+        studentSet.addAll(newStudentSet);
+
+        assertAll(
+                () -> assertThat(studentSet).hasSize(6),
+                () -> assertThat(studentSet).contains(st1, st2, st3, st4, st5, st6),
+                () -> assertThat(studentSet).containsOnly(st1, st2, st3, st4, st5, st6),
+                () -> assertThat(studentSet.addAll(newStudentSet)).isFalse()
         );
     }
 
