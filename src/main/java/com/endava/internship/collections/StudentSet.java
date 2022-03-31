@@ -48,7 +48,8 @@ public class StudentSet implements Set<Student> {
     @Override
     public <T> T[] toArray(T[] ts) {
         //TODO
-        return null;
+//        return Arrays.stream(ts).toArray();
+        throw new UnsupportedOperationException();
     }
 
     @Override
