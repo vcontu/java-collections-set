@@ -1,67 +1,80 @@
 package com.endava.internship.collections;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class StudentSet implements Set<Student> {
+    Map<Student, Integer> studentSet;
+    private static final Integer DEFAULT_VALUE = -1;
+
+    public StudentSet() {
+        studentSet = new HashMap<>();
+    }
+
     @Override
     public int size() {
-        //TODO
-        return 0;
+        return studentSet.size();
     }
 
     @Override
     public boolean isEmpty() {
-        //TODO
-        return false;
+        return studentSet.size() == 0;
     }
 
     @Override
     public boolean contains(Object o) {
-        //TODO
+        for (Student student : studentSet.keySet()) {
+            if (student.equals(o)) {
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public Iterator<Student> iterator() {
-        //TODO
-        return null;
+        return studentSet.keySet().iterator();
     }
 
     @Override
     public Object[] toArray() {
-        //TODO
-        return new Object[0];
+        int i = 0;
+        Object[] result = new Object[studentSet.size()];
+        for (Student student : this) {
+            result[i++] = student;
+        }
+        return result;
     }
 
     @Override
     public <T> T[] toArray(T[] ts) {
-        //TODO
-        return null;
+        ts = ts.length >= studentSet.size() ? ts : (T[]) Array.newInstance(ts.getClass().getComponentType(), studentSet.size());
+        for (int i = 0; i < Math.min(ts.length, studentSet.size()); i++) {
+            ts[i] = (T) iterator().next();
+        }
+        return ts;
     }
 
     @Override
     public boolean add(Student student) {
-        //TODO
-        return false;
+        return studentSet.put(student, DEFAULT_VALUE) == null;
     }
 
     @Override
     public boolean remove(Object o) {
-        //TODO
-        return false;
+        return DEFAULT_VALUE.equals(studentSet.remove(o));
     }
 
     @Override
     public void clear() {
-        //TODO
+        studentSet.clear();
     }
 
     @Override
     public boolean addAll(Collection<? extends Student> collection) {
-        //TODO
-        return false;
+        long count;
+        count = collection.stream().filter(this::add).count();
+        return count > 0;
     }
 
     @Override
